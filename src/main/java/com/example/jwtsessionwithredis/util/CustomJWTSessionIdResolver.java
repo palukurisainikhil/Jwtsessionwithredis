@@ -20,8 +20,8 @@ public class CustomJWTSessionIdResolver implements HttpSessionIdResolver {
     }
 
     @Override
-    public void setSessionId(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, String s) {
-        String jwtToken = JwtUtil.generateJwtToken(s);
+    public void setSessionId(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, String sessionID) {
+        String jwtToken = JwtUtil.generateJwtToken(sessionID);
         httpServletResponse.setHeader(HttpHeaders.AUTHORIZATION, "Bearer " + jwtToken);
 
     }

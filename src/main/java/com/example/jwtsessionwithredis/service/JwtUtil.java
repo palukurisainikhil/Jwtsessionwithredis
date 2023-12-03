@@ -11,14 +11,14 @@ import java.util.Date;
 @Service
 public class JwtUtil {
 
-    private static String SECRET_KEY = generateRandomKey(32);
+    private static String SECRET_KEY = "fwhegyuerbiyi5o4y89y54n0wb954g5i9jg40h5mnn4n4gn4398";
 
     public static String retrieveSessionId(String authorizationHeader) {
 
         String jwtToken;
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwtToken = authorizationHeader.substring(7); // Skip "Bearer "
-
+//
             Claims claims = Jwts.parser()
                     .setSigningKey(SECRET_KEY)
                     .parseClaimsJws(jwtToken)
