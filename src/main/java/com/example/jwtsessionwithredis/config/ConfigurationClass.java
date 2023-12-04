@@ -2,6 +2,7 @@ package com.example.jwtsessionwithredis.config;
 
 
 import com.example.jwtsessionwithredis.util.CustomJWTSessionIdResolver;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -14,11 +15,15 @@ import org.springframework.session.web.http.HttpSessionIdResolver;
 @Configuration
 public class ConfigurationClass {
 
-//    @Value("spring.redis.host")
-//    private String serverHost;
-//
-//    @Value("spring.redis.port")
-//    private int serverPort;
+    @Value("${spring.redis.host}")
+    private String redisHostAddress;
+
+    @Value("${spring.redis.port}")
+    private String redisPort;
+
+    @Value("${spring.redis.password}")
+    private String redispassword;
+
     @Bean
     public HttpSessionIdResolver httpSessionIdResolver() {
         return new CustomJWTSessionIdResolver();
@@ -36,7 +41,6 @@ public class ConfigurationClass {
 
         return jedisConnectionFactory;
     }
-
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
